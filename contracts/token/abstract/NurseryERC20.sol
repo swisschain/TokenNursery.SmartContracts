@@ -13,8 +13,8 @@ import "../../interfaces/IProcessor.sol";
 import "../../interfaces/IPriceOracle.sol";
 
 /**
- * @title BridgeERC20
- * @dev BridgeERC20 contract
+ * @title NurseryERC20
+ * @dev NurseryERC20 contract
  *
  * Error messages
  * PR01: Processor is not set
@@ -25,7 +25,7 @@ import "../../interfaces/IPriceOracle.sol";
 **/
 
 
-contract BridgeERC20 is Initializable, Ownable, IAdministrable, IGovernable, IPriceable, IERC20Detailed {
+contract NurseryERC20 is Initializable, Ownable, IAdministrable, IGovernable, IPriceable, IERC20Detailed {
   using Roles for Roles.Role;
   using SafeMath for uint256;
 
@@ -80,7 +80,7 @@ contract BridgeERC20 is Initializable, Ownable, IAdministrable, IGovernable, IPr
   }
 
   function setRealm(address newRealm) public onlyAdministrator {
-    BridgeERC20 king = BridgeERC20(newRealm);
+    NurseryERC20 king = NurseryERC20(newRealm);
     require(king.owner() == msg.sender || king.isRealmAdministrator(msg.sender), "KI01");
     _realm = newRealm;
     emit RealmChanged(newRealm);

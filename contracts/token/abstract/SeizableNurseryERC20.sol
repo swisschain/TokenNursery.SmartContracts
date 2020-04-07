@@ -3,20 +3,20 @@ pragma solidity 0.5.2;
 
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol";
-import "./BridgeERC20.sol";
+import "./NurseryERC20.sol";
 import "../../interfaces/ISeizable.sol";
 import "../../interfaces/IProcessor.sol";
 
 /**
- * @title SeizableBridgeERC20
- * @dev SeizableBridgeERC20 contract
+ * @title SeizableNurseryERC20
+ * @dev SeizableNurseryERC20 contract
  *
  * Error messages
  * SE02: Caller is not seizer
 **/
 
 
-contract SeizableBridgeERC20 is Initializable, ISeizable, BridgeERC20 {
+contract SeizableNurseryERC20 is Initializable, ISeizable, NurseryERC20 {
   using Roles for Roles.Role;
   
   Roles.Role internal _seizers;
@@ -27,7 +27,7 @@ contract SeizableBridgeERC20 is Initializable, ISeizable, BridgeERC20 {
   ) 
     public initializer 
   {
-    BridgeERC20.initialize(owner, processor);
+    NurseryERC20.initialize(owner, processor);
   }
 
   modifier onlySeizer() {
