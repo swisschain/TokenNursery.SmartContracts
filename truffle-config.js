@@ -19,11 +19,11 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    development: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+    },
 
     // Another network with more advanced options...
     // advanced: {
@@ -48,8 +48,9 @@ module.exports = {
     private: {
       provider: () => new HDWallet(`${process.env.ETH_PRIVATE_KEY}`, `${process.env.ETH_PRIVATE_RPC}`),
       network_id: "*",   // This network is yours, in the cloud.
-      production: false,   // Treats this network as if it was a public net. (default: false)
-      gasPrice: 0
+//      production: false,   // Treats this network as if it was a public net. (default: false)
+      gasPrice: 0,
+      type: "quorum"
     }
   },
 

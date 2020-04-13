@@ -3,7 +3,7 @@ pragma solidity 0.5.2;
 
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol";
-import "./abstract/SeizableNurseryERC20.sol";
+import "./new/XSeizableNurseryERC20.sol";
 import "../interfaces/IRulable.sol";
 import "../interfaces/ISuppliable.sol";
 import "../interfaces/IMintable.sol";
@@ -21,7 +21,7 @@ import "../interfaces/IProcessor.sol";
 **/
 
 
-contract NurseryToken is Initializable, IContactable, IRulable, ISuppliable, IMintable, SeizableNurseryERC20 {
+contract NurseryToken is Initializable, IContactable, IRulable, ISuppliable, IMintable, XSeizableNurseryERC20 {
   using Roles for Roles.Role;
   
   Roles.Role internal _suppliers;
@@ -34,15 +34,12 @@ contract NurseryToken is Initializable, IContactable, IRulable, ISuppliable, IMi
     IProcessor processor,
     string memory name,
     string memory symbol,
-    uint8 decimals,
-    address[] memory trustedIntermediaries
+    uint8 decimals
   ) 
     public initializer 
   {
-    SeizableNurseryERC20.initialize(owner, processor);
+    XSeizableNurseryERC20.initialize(owner, processor);
     processor.register(name, symbol, decimals);
-    _trustedIntermediaries = trustedIntermediaries;
-    emit TrustedIntermediariesChanged(trustedIntermediaries);
   }
 
   modifier onlySupplier() {
